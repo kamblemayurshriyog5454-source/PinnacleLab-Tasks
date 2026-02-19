@@ -1,0 +1,19 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Run Flight Booking Main",
+      "request": "launch",
+      "mainClass": "com.example.flightbooking.Main",
+      "console": "integratedTerminal"
+    },
+    {
+      "type": "java",
+      "name": "Run Web Server",
+      "request": "launch",
+      "mainClass": "com.example.flightbooking.WebServer",
+      "console": "integratedTerminal"
+    }
+  ]
+}

@@ -1,0 +1,132 @@
+:root {
+  --bg: #0b1220;
+  --card: #121a2b;
+  --text: #e6edf8;
+  --muted: #9fb2cf;
+  --accent: #4ea1ff;
+  --danger: #ff6b6b;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  background: radial-gradient(1200px 800px at 10% 10%, #12233f, var(--bg));
+  color: var(--text);
+}
+
+.app {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 28px;
+}
+.header p {
+  margin: 8px 0 20px;
+  color: var(--muted);
+}
+
+.search form {
+  display: flex;
+  gap: 10px;
+}
+.search input {
+  flex: 1;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #223045;
+  background: #0f1726;
+  color: var(--text);
+}
+.search button {
+  padding: 12px 16px;
+  border-radius: 10px;
+  border: none;
+  background: var(--accent);
+  color: #081422;
+  font-weight: 600;
+  cursor: pointer;
+}
+.search button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.results {
+  margin-top: 18px;
+}
+#location {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.current-card {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 16px 20px;
+  border-radius: 12px;
+  background: var(--card);
+  border: 1px solid #23324a;
+}
+.current-card .value {
+  font-size: 42px;
+  line-height: 1;
+}
+.current-card .meta {
+  color: var(--muted);
+}
+
+.days {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+.day {
+  padding: 14px;
+  border-radius: 12px;
+  background: var(--card);
+  border: 1px solid #23324a;
+}
+.day .date {
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.day .temps {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+}
+.day .high {
+  font-weight: 600;
+}
+.day .low {
+  color: var(--muted);
+}
+.day .precip {
+  margin-top: 6px;
+  color: var(--muted);
+}
+
+.error {
+  margin-top: 8px;
+  color: var(--danger);
+}
+
+.footer {
+  margin-top: 24px;
+  color: var(--muted);
+  font-size: 12px;
+}

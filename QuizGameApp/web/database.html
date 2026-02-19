@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App - Database View</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .db-table-container {
+            margin-bottom: 40px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            overflow-x: auto;
+        }
+        .db-table-name {
+            font-size: 1.5em;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            border-bottom: 2px solid #3498db;
+            display: inline-block;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9em;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #3498db;
+            color: white;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            background-color: #7f8c8d;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .back-btn:hover {
+            background-color: #6c7a7d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/" class="back-btn">← Back to Quiz</a>
+        <h1>Database Contents</h1>
+        <div class="toolbar">
+            <button id="delete-btn" class="btn btn-danger">Delete Database</button>
+            <button id="recreate-btn" class="btn btn-success">Recreate Database</button>
+        </div>
+        <div id="action-status" style="margin-bottom: 10px;"></div>
+        
+        <div id="loading">Loading database contents...</div>
+        <div id="db-content"></div>
+    </div>
+
+    <script>
+        document.getElementById('delete-btn').onclick = async function() {
+            const sure = confirm('This will delete the entire quiz_app database. Continue?');
+            if (!sure) return;
+            try {
+                const res = await fetch('/api/delete_db', { method: 'POST' });
+                const text = await res.text();
+                document.getElementById('action-status').textContent = 'Delete result: ' + text;
+                setTimeout(() => location.reload(), 800);
+            } catch (e) {
+                document.getElementById('action-status').textContent = 'Delete failed: ' + e.message;
+            }
+        };
+
+        document.getElementById('recreate-btn').onclick = async function() {
+            try {
+                await fetch('/api/delete_db', { method: 'POST' });
+                await fetch('/api/reinit_db', { method: 'POST' });
+            } catch (e) {}
+            document.getElementById('action-status').textContent = 'Recreate requested. If not immediate, restart app.';
+            setTimeout(() => location.reload(), 1200);
+        };
+
+        fetch('/api/database')
+            .then(response => response.json())
+            .then(data => {
+                const container = document.getElementById('db-content');
+                document.getElementById('loading').style.display = 'none';
+
+                if (!data.tables || data.tables.length === 0) {
+                    container.innerHTML = '<p>No tables found in the database.</p>';
+                    return;
+                }
+
+                data.tables.forEach(table => {
+                    const tableDiv = document.createElement('div');
+                    tableDiv.className = 'db-table-container';
+
+                    const title = document.createElement('div');
+                    title.className = 'db-table-name';
+                    title.textContent = table.name;
+                    tableDiv.appendChild(title);
+
+                    if (table.rows.length === 0) {
+                        const emptyMsg = document.createElement('p');
+                        emptyMsg.textContent = '(Empty Table)';
+                        emptyMsg.style.fontStyle = 'italic';
+                        emptyMsg.style.color = '#7f8c8d';
+                        tableDiv.appendChild(emptyMsg);
+                    } else {
+                        const tableEl = document.createElement('table');
+                        
+                        // Header
+                        const thead = document.createElement('thead');
+                        const headerRow = document.createElement('tr');
+                        table.columns.forEach(col => {
+                            const th = document.createElement('th');
+                            th.textContent = col;
+                            headerRow.appendChild(th);
+                        });
+                        thead.appendChild(headerRow);
+                        tableEl.appendChild(thead);
+
+                        // Body
+                        const tbody = document.createElement('tbody');
+                        table.rows.forEach(row => {
+                            const tr = document.createElement('tr');
+                            row.forEach(cell => {
+                                const td = document.createElement('td');
+                                td.textContent = cell;
+                                tr.appendChild(td);
+                            });
+                            tbody.appendChild(tr);
+                        });
+                        tableEl.appendChild(tbody);
+                        
+                        tableDiv.appendChild(tableEl);
+                    }
+
+                    container.appendChild(tableDiv);
+                });
+            })
+            .catch(err => {
+                document.getElementById('loading').textContent = 'Error loading database: ' + err.message;
+                console.error(err);
+            });
+    </script>
+</body>
+</html>

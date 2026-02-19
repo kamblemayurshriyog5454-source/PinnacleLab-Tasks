@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Java Quiz</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Java Quiz App</h1>
+        </header>
+
+        <div id="start-screen" class="screen active">
+            <h2>Welcome to the Quiz</h2>
+            <p>Enter your name to begin:</p>
+            <input type="text" id="username" placeholder="Your Name" />
+            <button onclick="startQuiz()">Start Quiz</button>
+            
+            <div style="margin-top: 20px; font-size: 0.9em;">
+                <a href="/database.html" style="color: #7f8c8d; text-decoration: none;">View Database Contents</a>
+            </div>
+            <div class="toolbar" style="justify-content:center; margin-top:10px;">
+                <a href="/database.html" class="btn btn-success">Open Database Page</a>
+                <button id="delete-db-home" class="btn btn-danger">Delete Database</button>
+            </div>
+        </div>
+
+        <div id="quiz-screen" class="screen">
+            <div id="question-container">
+                <h3 id="question-text">Question goes here...</h3>
+                <div id="options-container">
+                    <!-- Options injected here -->
+                </div>
+            </div>
+            <button id="next-btn" onclick="nextQuestion()">Next</button>
+        </div>
+
+        <div id="result-screen" class="screen">
+            <h2>Quiz Completed!</h2>
+            <p>Score: <span id="final-score">0</span> / <span id="total-questions">0</span></p>
+            
+            <div id="leaderboard">
+                <h3>High Scores</h3>
+                <ul id="high-scores-list">
+                    <li>Loading...</li>
+                </ul>
+            </div>
+            
+            <button onclick="location.reload()">Play Again</button>
+        </div>
+    </div>
+    <script src="app.js"></script>
+    <script>
+        const delBtn = document.getElementById('delete-db-home');
+        if (delBtn) {
+            delBtn.onclick = async function() {
+                const sure = confirm('This will delete the entire quiz_app database. Continue?');
+                if (!sure) return;
+                try {
+                    const res = await fetch('/api/delete_db', { method: 'POST' });
+                    const text = await res.text();
+                    alert('Delete result: ' + text);
+                } catch (e) {
+                    alert('Delete failed: ' + e.message);
+                }
+            };
+        }
+    </script>
+</body>
+</html>

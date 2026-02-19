@@ -1,0 +1,88 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "pwa-msedge",
+            "request": "launch",
+            "name": "Open index.html (Edge autodetect)",
+            "file": "${workspaceFolder}/index.html"
+        },
+        {
+            "type": "pwa-chrome",
+            "request": "launch",
+            "name": "Open index.html (Chrome autodetect)",
+            "file": "${workspaceFolder}/index.html"
+        },
+        {
+            "type": "pwa-msedge",
+            "request": "launch",
+            "name": "Open index.html (Edge 64-bit)",
+            "file": "${workspaceFolder}/index.html",
+            "runtimeExecutable": "${env:ProgramFiles}\\Microsoft\\Edge\\Application\\msedge.exe"
+        },
+        {
+            "type": "pwa-msedge",
+            "request": "launch",
+            "name": "Open index.html (Edge 32-bit)",
+            "file": "${workspaceFolder}/index.html",
+            "runtimeExecutable": "${env:ProgramFiles(x86)}\\Microsoft\\Edge\\Application\\msedge.exe"
+        },
+        {
+            "type": "pwa-chrome",
+            "request": "launch",
+            "name": "Launch Chrome against localhost",
+            "url": "http://localhost:8000",
+            "webRoot": "${workspaceFolder}",
+            "runtimeExecutable": "${env:ProgramFiles}\\Google\\Chrome\\Application\\chrome.exe"
+        },
+        {
+            "type": "pwa-chrome",
+            "request": "launch",
+            "name": "Launch Chrome (127.0.0.1) against localhost",
+            "url": "http://127.0.0.1:8000",
+            "webRoot": "${workspaceFolder}",
+            "runtimeExecutable": "${env:ProgramFiles}\\Google\\Chrome\\Application\\chrome.exe"
+        },
+        {
+            "type": "pwa-chrome",
+            "request": "launch",
+            "name": "Chrome with preLaunchTask (127.0.0.1:8000)",
+            "url": "http://127.0.0.1:8000",
+            "webRoot": "${workspaceFolder}",
+            "runtimeExecutable": "${env:ProgramFiles}\\Google\\Chrome\\Application\\chrome.exe",
+            "preLaunchTask": "serve-8000-py"
+        },
+        {
+            "type": "pwa-msedge",
+            "request": "launch",
+            "name": "Edge with preLaunchTask (127.0.0.1:8000)",
+            "url": "http://127.0.0.1:8000",
+            "webRoot": "${workspaceFolder}",
+            "preLaunchTask": "serve-8000-python"
+        },
+        {
+            "type": "pwa-chrome",
+            "request": "launch",
+            "name": "Launch Chrome (x86) against localhost",
+            "url": "http://localhost:8000",
+            "webRoot": "${workspaceFolder}",
+            "runtimeExecutable": "${env:ProgramFiles(x86)}\\Google\\Chrome\\Application\\chrome.exe"
+        },
+        {
+            "type": "pwa-msedge",
+            "request": "launch",
+            "name": "Launch Edge against localhost",
+            "url": "http://localhost:8000",
+            "webRoot": "${workspaceFolder}",
+            "runtimeExecutable": "${env:ProgramFiles}\\Microsoft\\Edge\\Application\\msedge.exe"
+        },
+        {
+            "type": "pwa-msedge",
+            "request": "launch",
+            "name": "Launch Edge (x86) against localhost",
+            "url": "http://localhost:8000",
+            "webRoot": "${workspaceFolder}",
+            "runtimeExecutable": "${env:ProgramFiles(x86)}\\Microsoft\\Edge\\Application\\msedge.exe"
+        }
+    ]
+}

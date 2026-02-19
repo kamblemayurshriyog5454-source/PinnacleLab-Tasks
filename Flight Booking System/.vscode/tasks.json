@@ -1,0 +1,33 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build: Java compile",
+      "type": "shell",
+      "command": "javac -d out src/com/example/flightbooking/*.java",
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "Package: Flight Booking JAR",
+      "type": "shell",
+      "command": "jar cfm dist/flight-booking.jar MANIFEST.MF -C out .",
+      "dependsOn": "Build: Java compile",
+      "problemMatcher": []
+    },
+    {
+      "label": "Run: Flight Booking JAR",
+      "type": "shell",
+      "command": "java -jar dist/flight-booking.jar",
+      "dependsOn": "Package: Flight Booking JAR",
+      "problemMatcher": []
+    },
+    {
+      "label": "Run: Web Server",
+      "type": "shell",
+      "command": "java -cp out com.example.flightbooking.WebServer",
+      "dependsOn": "Build: Java compile",
+      "problemMatcher": []
+    }
+  ]
+}

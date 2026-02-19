@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Weather Forecast</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="app">
+      <header class="header">
+        <h1>Weather Forecast</h1>
+        <p>Search a city and view current and daily forecast</p>
+      </header>
+      <section class="search">
+        <form id="search-form">
+          <input id="query" type="text" placeholder="Enter city name" aria-label="City name" required>
+          <button type="submit">Get Forecast</button>
+        </form>
+      </section>
+      <section id="results" class="results">
+        <div id="location"></div>
+        <div id="current" class="current"></div>
+        <div id="daily" class="daily"></div>
+        <div id="error" class="error"></div>
+      </section>
+      <footer class="footer">
+        <span>Data by Open‑Meteo</span>
+      </footer>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
