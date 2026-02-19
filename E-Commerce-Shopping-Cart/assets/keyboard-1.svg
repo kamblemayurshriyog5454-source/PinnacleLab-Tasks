@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600">
+  <rect width="100%" height="100%" fill="#0f1518"/>
+  <rect x="160" y="180" width="480" height="240" rx="20" fill="#11181c" stroke="#22c55e" stroke-width="6"/>
+  <g fill="#22c55e" opacity="0.8">
+    <rect x="180" y="200" width="60" height="40" rx="8"/>
+    <rect x="250" y="200" width="60" height="40" rx="8"/>
+    <rect x="320" y="200" width="60" height="40" rx="8"/>
+    <rect x="390" y="200" width="60" height="40" rx="8"/>
+    <rect x="460" y="200" width="60" height="40" rx="8"/>
+    <rect x="530" y="200" width="60" height="40" rx="8"/>
+  </g>
+  <text x="400" y="470" font-size="36" font-family="Inter, Arial" fill="#cbd5e1" text-anchor="middle">Gaming Keyboard</text>
+</svg>

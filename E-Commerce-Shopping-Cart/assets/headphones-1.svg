@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600">
+  <rect width="100%" height="100%" fill="#0f1518"/>
+  <g fill="#22c55e">
+    <rect x="240" y="180" width="80" height="220" rx="40"/>
+    <rect x="480" y="180" width="80" height="220" rx="40"/>
+    <path d="M240 180 a160 160 0 0 1 320 0" fill="none" stroke="#8ef2b6" stroke-width="20"/>
+  </g>
+  <text x="400" y="520" font-size="40" font-family="Inter, Arial" fill="#cbd5e1" text-anchor="middle">Wireless Headphones</text>
+</svg>

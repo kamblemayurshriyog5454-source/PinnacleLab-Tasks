@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600">
+  <rect width="100%" height="100%" fill="#0f1518"/>
+  <path d="M260 420 L540 420 L520 380 L280 380 Z" fill="#22c55e" opacity="0.25"/>
+  <rect x="300" y="200" width="200" height="150" rx="12" fill="#11181c" stroke="#22c55e" stroke-width="6"/>
+  <text x="400" y="520" font-size="36" font-family="Inter, Arial" fill="#cbd5e1" text-anchor="middle">Laptop Stand</text>
+</svg>

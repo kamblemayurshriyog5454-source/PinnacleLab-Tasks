@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>E‑commerce Shopping Cart</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <div class="brand">
+          <div class="logo">EC</div>
+          <span class="brand-name">E‑commerce</span>
+        </div>
+        <nav class="nav">
+          <a href="#products" class="nav-link">Products</a>
+          <a href="#about" class="nav-link">About</a>
+          <a href="#" id="ordersLink" class="nav-link">Orders</a>
+          <button id="cartToggle" class="btn btn-secondary icon-btn" aria-label="Toggle cart">
+            <span>Cart</span>
+            <span id="cartCount" class="badge">0</span>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <div class="categories">
+      <div class="container categories-inner">
+        <button class="chip" data-cat="all">All</button>
+        <button class="chip" data-cat="audio">Audio</button>
+        <button class="chip" data-cat="wearables">Wearables</button>
+        <button class="chip" data-cat="accessories">Accessories</button>
+        <button class="chip" data-cat="cameras">Cameras</button>
+        <button class="chip" data-cat="laptops">Laptops</button>
+      </div>
+    </div>
+
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <h1 class="hero-title">Shop smart with a sleek cart experience</h1>
+          <p class="hero-subtitle">Beautiful design, smooth interactions, and a checkout flow that delights.</p>
+          <div class="hero-actions">
+            <a href="#products" class="btn btn-primary">Browse Products</a>
+            <button id="learnBtn" class="btn btn-ghost">Learn More</button>
+          </div>
+        </div>
+        <div class="hero-card">
+          <div class="card">
+            <div class="card-close">×</div>
+            <div class="card-add">+</div>
+            <h3 class="card-title">E‑commerce Shopping Cart</h3>
+            <p class="card-desc">Design a shopping cart system for e‑commerce websites, offering product selection, cart management, and checkout functionality.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="deals">
+      <div class="container">
+        <div id="carousel" class="carousel">
+          <div class="slide active">
+            <div class="slide-content">
+              <h3>Festival Deals</h3>
+              <p>Up to 50% off on audio and wearables</p>
+              <a href="#products" class="btn btn-primary">Shop Now</a>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="slide-content">
+              <h3>Camera Specials</h3>
+              <p>Capture more with stunning discounts</p>
+              <a href="#products" class="btn btn-primary">Explore</a>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="slide-content">
+              <h3>Laptop Essentials</h3>
+              <p>Power and portability for work and play</p>
+              <a href="#products" class="btn btn-primary">View</a>
+            </div>
+          </div>
+          <div class="carousel-controls">
+            <button class="icon-btn" data-dir="prev">‹</button>
+            <button class="icon-btn" data-dir="next">›</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <main class="container">
+      <section id="products" class="section">
+        <div class="section-head">
+          <h2>Featured products</h2>
+          <div class="filters">
+            <input id="searchInput" class="input" type="search" placeholder="Search products">
+            <div id="searchSuggest" class="suggest"></div>
+            <select id="sortSelect" class="select">
+              <option value="popular">Popular</option>
+              <option value="priceAsc">Price: Low to High</option>
+              <option value="priceDesc">Price: High to Low</option>
+            </select>
+            <select id="ratingSelect" class="select">
+              <option value="0">Rating: All</option>
+              <option value="4">4★ & up</option>
+              <option value="4.5">4.5★ & up</option>
+            </select>
+            <input id="priceRange" type="range" min="0" max="250" value="250" class="range">
+            <span id="priceLabel" class="muted">Max $250</span>
+          </div>
+        </div>
+        <div id="productGrid" class="grid"></div>
+        <button id="loadMoreBtn" class="btn btn-secondary btn-block">Load More</button>
+      </section>
+    </main>
+
+    <aside id="cartDrawer" class="cart-drawer" aria-hidden="true">
+      <div class="cart-header">
+        <h3>Your Cart</h3>
+        <button id="cartClose" class="icon-btn" aria-label="Close cart">×</button>
+      </div>
+      <div id="cartItems" class="cart-items"></div>
+      <div class="cart-footer">
+        <div class="totals">
+          <span>Subtotal</span>
+          <strong id="cartSubtotal">$0.00</strong>
+        </div>
+        <button id="checkoutBtn" class="btn btn-primary btn-block">Checkout</button>
+      </div>
+    </aside>
+
+    <div id="quickView" class="modal">
+      <div class="modal-dialog">
+        <button id="modalClose" class="icon-btn">×</button>
+        <img id="modalImg" alt="">
+        <h3 id="modalTitle"></h3>
+        <div class="price-row">
+          <span id="modalPrice" class="price"></span>
+          <span id="modalRating" class="rating"></span>
+        </div>
+        <button id="modalAdd" class="btn btn-primary btn-block">Add to Cart</button>
+      </div>
+    </div>
+
+    <div id="toastContainer" class="toast-container"></div>
+
+    <div id="productDetail" class="modal">
+      <div class="detail-dialog">
+        <button id="detailClose" class="icon-btn">×</button>
+        <div class="detail-grid">
+          <div class="detail-gallery">
+            <img id="detailMain" alt="">
+            <div id="detailThumbs" class="thumbs"></div>
+            <button id="detailChangeImage" class="btn btn-ghost" style="margin-top:10px">Change Image</button>
+            <input id="detailFile" type="file" accept="image/*" style="display:none">
+            <button id="detailUpload" class="btn btn-secondary" style="margin-top:8px">Upload Image</button>
+          </div>
+          <div class="detail-info">
+            <h2 id="detailTitle"></h2>
+            <div class="price-row" style="margin-bottom:10px">
+              <span id="detailPrice" class="price"></span>
+              <span id="detailRating" class="rating"></span>
+            </div>
+            <p id="detailDesc" class="muted"></p>
+            <ul id="detailFeatures" class="features"></ul>
+            <button id="detailAdd" class="btn btn-primary btn-block">Add to Cart</button>
+            <button id="detailBuy" class="btn btn-secondary btn-block" style="margin-top:8px">Buy Now</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="checkoutModal" class="modal">
+      <div class="checkout-dialog">
+        <div class="checkout-grid">
+          <div class="checkout-left">
+            <h3>Delivery details</h3>
+            <div class="form">
+              <input id="addrName" class="input" placeholder="Full name">
+              <input id="addrPhone" class="input" placeholder="Phone">
+              <input id="addrLine1" class="input" placeholder="Address line 1">
+              <input id="addrLine2" class="input" placeholder="Address line 2">
+              <div class="form-row">
+                <input id="addrCity" class="input" placeholder="City">
+                <input id="addrPin" class="input" placeholder="PIN/ZIP">
+              </div>
+            </div>
+            <h3 style="margin-top:12px">Payment method</h3>
+            <div class="radios">
+              <label class="radio"><input type="radio" name="payMethod" value="cod" checked> Cash on delivery</label>
+              <label class="radio"><input type="radio" name="payMethod" value="card"> Card</label>
+              <label class="radio"><input type="radio" name="payMethod" value="upi"> UPI</label>
+            </div>
+          </div>
+          <div class="checkout-right">
+            <h3>Order summary</h3>
+            <div id="summaryItems" class="summary-items"></div>
+            <div class="totals" style="margin-top:8px">
+              <span>Total</span>
+              <strong id="summaryTotal">$0.00</strong>
+            </div>
+            <button id="placeOrderBtn" class="btn btn-primary btn-block">Place Order</button>
+            <button id="cancelCheckoutBtn" class="btn btn-secondary btn-block" style="margin-top:8px">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="orderPlacedModal" class="modal">
+      <div class="order-dialog">
+        <h3>Order placed</h3>
+        <p class="muted">Thank you! Your order has been placed successfully.</p>
+        <div class="order-info">
+          <div><strong>Order ID:</strong> <span id="orderId"></span></div>
+          <div><strong>Items:</strong> <span id="orderItemsCount"></span></div>
+          <div><strong>Payment:</strong> <span id="orderPayment"></span></div>
+          <div><strong>Total:</strong> <span id="orderTotal"></span></div>
+          <div><strong>ETA:</strong> <span>3‑5 days</span></div>
+        </div>
+        <button id="orderContinueBtn" class="btn btn-primary btn-block">Continue shopping</button>
+      </div>
+    </div>
+
+    <div id="ordersModal" class="modal">
+      <div class="orders-dialog">
+        <div class="orders-header">
+          <h3>Your Orders</h3>
+          <button id="ordersClose" class="icon-btn">×</button>
+        </div>
+        <div id="ordersList" class="orders-list"></div>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>© <span id="year"></span> E‑commerce. All rights reserved.</p>
+        <div class="social">
+          <a href="#" class="social-link">Instagram</a>
+          <a href="#" class="social-link">Twitter</a>
+          <a href="#" class="social-link">Facebook</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="./app.js"></script>
+  </body>
+  </html>
